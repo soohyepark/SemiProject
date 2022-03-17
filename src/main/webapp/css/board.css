@@ -1,0 +1,160 @@
+@charset "UTF-8";
+#board{
+	box-sizing : border-box;
+	width:900px;
+	margin:10px auto;
+	border:0px solid #f00;
+	min-height:200px;
+}
+
+#board h2{
+	margin-bottom:10px;
+}
+#board hr{
+	height:2px;
+	background:#000;
+	margin-bottom:10px;
+}
+#board #frm_search{
+	text-align:right;
+	margin-bottom:4px;
+}
+#board #title{
+	background-color:#000;
+	color: #fff;
+	padding:3px 0;
+	height:30px;
+}
+#board #list span{
+	display:inline-block;
+}
+#board span.no{width:50px; text-align:center; margin-right:30px;}
+#board span.subject{
+	width:450px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	vertical-align:bottom;
+}
+#board span.mid{width:100px; }
+#board span.mdate{width:100px;}
+#board span.hit{width:70px; text-align:center;}
+#board #items{
+	line-height:1.6em;
+}
+#board #items .item:hover{
+	background:#eee;
+	cursor:pointer;
+}
+#board #btnPage{
+	text-align:center;
+	border-top:1px solid #666;
+	padding-top:10px;
+}
+#board #btnPage>input{
+	margin:0 2px;
+	padding:2px 6px;
+	border:0px solid #000;
+	background-color:#fff;
+}
+#board #btnPage>input:hover{
+	background-color:#fff;
+	text-decoration:underline;
+	cursor:pointer;
+}
+#board .here{
+	background-color: #fff;
+	color: #69f;
+	border:1px solid #000;
+}
+
+#board #btnZone{
+	text-align:center;
+	border-top:1px solid #666;
+	padding-top:10px;
+}
+#board #btnZone>input{
+	padding:2px 4px;
+	border:1px solid #000;
+}
+#board #btnZone>input:hover{
+	color:#69f;
+	background-color:#fff;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+/*insert-------*/
+#board #frm_board>label{
+	display:inline-block;
+	width:90px;
+	text-align:right;
+	line-height:1.5em;
+	vertical-align:top;
+}
+#board #frm_board input[type=password]{
+	margin-bottom:10px;
+}
+
+/*result--------*/
+#board #msg{
+	margin-bottom:10px;
+}
+
+/*spinner----------*/
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+	z-index:100;
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border-top: 2px solid #07d;
+  border-right: 2px solid transparent;
+  animation: spinner .6s linear infinite;
+}
+
+/*view-------------*/
+#board #doc{
+	display:inline-block;
+	width:550px;
+	min-height:200px;
+	border:1px solid #000;
+}
+#board .attZone{
+	width:650px;
+	border:1px solid #000;
+	display:inline-block;
+	margin-bottom:10px;
+}
+#board .attZone ul{
+	margin-left:20px;
+}
+/*view->pwdCheck*/
+#board #id_check{
+	display: none;
+	z-index:1;
+	background-color:rgba(0,0,0,0.3);
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+}
+#board #id_check form{
+	background-color:#fff;
+	width:350px;
+	padding:40px;
+	margin: 300px auto;
+	position:relative;
+	border-radius:10px;
+}

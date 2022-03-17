@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestbook">
+	<select id="totSize" parameterType="String" resultType="Integer">
+		select count(num) totSize from guestbook where mid=#{_parameter} or doc like '%${_parameter}%' 
+	</select>
+	<select id="search" parameterType="guestbookMybatis.Page" resultType="guestbookMybatis.GuestBookVo">
+		select * from guestbook where mid=#{findStr} or doc like '%${findStr}%' limit ${startNo-1}, ${listSize}
+	</select>
+	<insert id="insert" parameterType="guestbookMybatis.GuestBookVo">
+		insert into guestbook(mid,mdate,doc,pwd) values(#{mid},#{mdate},#{doc},#{pwd})
+	</insert>
+	<update id="update" parameterType="guestbookMybatis.GuestBookVo">
+		update guestbook set doc=#{doc} where num=#{num}
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from guestbook where num in(${_parameter})
+	</delete>
+</mapper>

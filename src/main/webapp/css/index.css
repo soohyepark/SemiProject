@@ -1,0 +1,53 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;	
+}
+#index{
+	width:1200px;
+	margin:10px auto;
+}
+#index #login{
+	padding-bottom:5px;
+	text-align:right;
+	
+}
+#index header{
+	position:relative;
+	height:150px;
+	/*background-image:url(../imgs/back6.jpg);*/
+	background:#000;
+	background-size:100% 100%;
+}
+#index header h1{
+	color:#fff;
+	padding:10px;
+}
+#index header nav{
+	position:absolute;
+	right:5px;
+	bottom:5px;
+}
+#index header h1{
+	
+	padding:50px;
+}
+#index nav>a{
+	text-decoration:none;
+	border:0px solid #fff;
+	border-radius:8px;
+	color:#fff;
+	width:100px;
+	float:left;
+	padding:3px 5px;
+	text-align:center;
+}
+#index nav>a:hover{
+	background:#69f;
+}
+
+#index footer{
+	height:50px;
+	background-color:#fff;
+}

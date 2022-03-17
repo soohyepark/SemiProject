@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="login" parameterType="String" resultType="memberMybatis.MemberVo">
+		select * from member where mid=#{_parameter}
+	</select>
+	
+	<select id="totSize" parameterType="String" resultType="Integer">
+		select count(mid) totSize from member 
+		where mid=#{_parameter} or phone like '%${_parameter}%' 
+		or irum like '%${_parameter}%' or address like '%${_parameter}%' or address2 like '%${_parameter}%'
+	</select>
+	
+	<select id="search" parameterType="memberMybatis.Page" resultType="memberMybatis.MemberVo">
+		select * from member
+		where mid=#{findStr} or phone like '%${findStr}%' 
+		or irum like '%${findStr}%' or address like '%${findStr}%' or address2 like '%${findStr}%'
+		limit ${startNo-1}, ${listSize} 
+	</select>
+	
+	<select id="view" parameterType="String" resultType="memberMybatis.MemberVo">
+		select * from member where mid=#{_parameter}
+	</select>
+	
+	<select id="pwd" parameterType="String" resultType="String">
+		select pwd from member where mid=#{_parameter}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete from member where mid=#{_parameter}
+	</delete>
+	
+	<insert id="insert" parameterType="memberMybatis.MemberVo">
+		insert into member(mid,irum,pwd,phone,zip,address,address2,photo) 
+		values(#{mid},#{irum},#{pwd},#{phone},#{zip},#{address},#{address2},#{photo})
+	</insert>
+	
+	<update id="update" parameterType="memberMybatis.MemberVo">
+		update member 
+		<set>
+			irum=#{irum}, phone=#{phone}, zip=#{zip}, address=#{address}, address2=#{address2},
+			<if test="photo != null">
+				photo = #{photo}
+			</if> 
+		</set>
+		where pwd=#{pwd} and mid=#{mid} 
+	</update>
+	
+	<select id="idCheck" parameterType="String" resultType="Boolean">
+		select case
+							when count(mid)>0
+							then 0 else 1
+						end result
+		from member
+		where mid=#{_parameter}
+	</select>
+	
+	<select id="idCheck2" parameterType="String" resultType="String">
+		select mid from member where mid=#{_parameter}
+	</select>
+</mapper>

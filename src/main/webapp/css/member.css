@@ -1,0 +1,122 @@
+@charset "UTF-8";
+*{
+	padding:0;
+	box-sizing:border-box;
+}
+/*insert--------*/
+#member{
+	width:800px;
+	margin:30px auto;
+	position:relative;
+	line-height:1.6em;
+}
+#member h2{
+	margin-bottom:10px;
+}
+#member hr{
+	height:2px;
+	background:#000;
+	margin-bottom:10px;
+}
+#member label{
+	display:inline-block;
+	width:70px;
+}
+#member>form{
+	position:relative;
+}
+#member>form>img{
+	position:absolute;
+	top:5px;
+	right:5px;
+	cursor:pointer;
+}
+
+.btnZone{
+	text-align:center;
+	margin:30px 0;
+	clear:both;
+}
+
+#member form input[type=file]{
+	margin:20px 0;
+	display:none;
+}
+/*list---------*/
+#member .findZone{
+	text-align:right;
+}
+#member .findZone input[type=button]{
+	border:0;
+	background:#000;
+	color:#fff;
+	padding:5px;
+	border-radius:3px;
+}
+#member .item{
+	display:inline-block;
+	float:left;
+	width:376px;
+	border:3px solid #69f;
+	padding:10px;
+	margin:10px 12px;
+	cursor:pointer;
+}
+#member .item:hover{
+	box-shadow:2px 2px 6px #ccc;
+	background-color:#cedeff;
+}
+#member .item>img{
+	vertical-align:top;
+	align:left;
+}
+#member .item>div{
+	vertical-align:top;
+	display:inline-block;
+	margin:0 5px;
+}
+#member #rows .item_title{
+	display:inline-block;
+	width:60px;
+	font-weight:bold;
+	vertical-align:top;
+}
+#member #rows .item_value{
+	display:inline-block;
+	width:160px;
+}
+#member #rows .item_address{
+	height:50px;
+	white-space:pre-line;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	vertical-align:top;
+}
+/*
+#member .btnZone2 input[type=button]{
+	align:center;
+	border:1px solid #e8e8e8;
+	background:#fff;
+	color:#000;
+	padding:5px;
+	border-radius:3px;
+} 
+*/
+#member #id_check{
+	display: none;
+	z-index:1;
+	background-color:rgba(0,0,0,0.3);
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+}
+#member #id_check form{
+	background-color:#fff;
+	width:350px;
+	padding:40px;
+	margin: 300px auto;
+	position:relative;
+	border-radius:10px;
+}

@@ -1,0 +1,36 @@
+12-09 테이블 생성
+
+drop table board;
+drop table boardatt;
+create table board(
+	serial int not null unique,
+	mid varchar(50),
+	subject varchar(200),
+	doc longtext,
+	pwd varchar(200),
+	mdate datetime,
+	hit int,
+	grp int,
+	seq int,
+	deep int
+);
+create table boardAtt(
+	serial int primary key auto_increment,
+	grp int,
+	attFile varchar(200)	
+);
+
+create procedure brd_init()
+begin
+	declare cnt int default 100;
+	here: while cnt<200 DO
+		insert into board(serial, grp, seq, deep, mid, pwd, subject, doc, mdate, hit)
+		values(cnt,cnt,0,0,'hong','1111',concat('hello...',cnt),concat('내용',cnt), now(),0);
+		set cnt = cnt+1;
+	end while;
+end;
+
+#borad 테이블에서 serial과 grp값을 쉽게 설정하기 위해 table 생성
+create table boardSerial(
+	serial int primary key default 0
+)

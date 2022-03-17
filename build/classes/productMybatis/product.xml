@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<select id="totSize" parameterType="String" resultType="Integer">
+		select count(pd.serial) totSize from products pd join parts p on pd.code=p.code 
+		where pd.mdate like '%${_parameter}%' or pd.code like '%${_parameter}%' or p.codeName like '%${_parameter}%' 
+	</select>
+	
+	<select id="search" parameterType="productMybatis.Page" resultType="productMybatis.ProductVo">
+		select *, (ea*price) amt from products pd join parts p on pd.code=p.code 
+		where pd.mdate like '%${findStr}%' or pd.code like '%${findStr}%' or p.codeName like '%${findStr}%' 
+		order by mdate desc 
+		limit ${startNo-1}, ${listSize} 
+	</select>
+	
+	<select id="view" parameterType="Integer" resultType="productMybatis.ProductVo">
+		select * from products pd join parts p on pd.code=p.code 
+		where pd.serial=${_parameter}
+	</select>
+	
+	<update id="update" parameterType="productMybatis.ProductVo">
+		update products set ea=${ea}, mdate=#{mdate}, code=#{code}
+		where serial = ${serial}
+	</update>
+	
+	<select id="selectParts" parameterType="String" resultType="productMybatis.PartsVo">
+		select * from parts where code like '%${_parameter}%' or codeName like '%${_parameter}%'
+	</select>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from products where serial=${_parameter}
+	</delete>
+	
+	<insert id="insert" parameterType="productMybatis.PartsVo">
+		insert into products(code,mdate,ea) values(#{code},#{mdate},${ea}) 
+	</insert>
+</mapper>

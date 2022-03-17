@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="brd">
+	<select id="totSize" parameterType="String" resultType="Integer">
+		select count(serial) totSize from board 
+		where mid like '%${_parameter}%' 
+		or subject like '%${_parameter}%' 
+		or doc like '%${_parameter}%'
+	</select>
+	<select id="search" parameterType="board.Page" resultType="board.BoardVo">
+		select serial, mid, hit, grp, seq, deep, 
+						(select count(serial) from boardAtt where grp=b.serial) attCnt,
+						date_format(mdate,'%y-%m-%d') mdate,
+						concat(lpad(' ',deep*2,'&#160;'), 
+							case
+								when deep>0 then concat('└',subject)
+								else subject
+							end
+						) subject 
+		from board b
+		where mid like '%${findStr}%' 
+		or subject like '%${findStr}%' 
+		or doc like '%${findStr}%' 
+		order by grp desc, seq asc
+		limit ${startNo-1}, ${listSize}
+	</select>
+	
+	<insert id="insert" parameterType="board.BoardVo">
+		insert into board(serial, grp, seq, deep, hit, mid, pwd, subject, doc, mdate) 
+		values(getBoardSerial('i'),getBoardSerial(''),0,0,0,#{mid},#{pwd},#{subject}, #{doc},now())	
+	</insert>
+	
+	<insert id="attInsert" parameterType="board.BoardAtt">
+		insert into boardAtt(grp,attFile) values(getBoardSerial(''),#{attFile})
+	</insert>
+	
+	<update id="hitUp" parameterType="board.BoardVo">
+		update board set hit=hit+1 where serial=#{serial}
+	</update>
+	<select id="view" parameterType="String" resultType="board.BoardVo">
+		select * from board where serial=#{_parameter}
+	</select>
+	
+	<select id="attList" parameterType="String" resultType="board.BoardAtt">
+		select * from boardatt where grp=#{serial}
+	</select>
+	
+	<update id="modify" parameterType="board.BoardVo">
+		update board set subject=#{subject}, doc=#{doc}
+		where serial = #{serial} and pwd=#{pwd}	
+	</update>
+	<insert id="attModify" parameterType="board.BoardAtt">
+		insert into boardAtt(grp,attFile) values(#{grp},#{attFile})
+	</insert>
+	<delete id="deleteAtt" parameterType="list">
+		delete from boardatt where attFile in
+			<foreach collection="list" item="att" open="(" close=")" separator=",">
+				#{att}
+			</foreach>
+	</delete>
+	<delete id="delete" parameterType="board.BoardVo">
+		delete from board where serial=#{serial} and pwd=#{pwd}
+	</delete>
+	<delete id="deleteAttGrp" parameterType="String">
+		delete from boardAtt where grp=#{_parameter}
+	</delete>
+	
+	<update id="seqUp" parameterType="board.BoardVo">
+		update board set seq=seq+1 where grp=${grp} and seq>${seq}
+	</update>
+	<insert id="repl" parameterType="board.BoardVo">
+		insert into board(serial,grp,seq,deep,hit,mid,pwd,subject,doc,mdate) 
+		values(getBoardSerial('i'),#{grp},${seq}+1,${deep}+1,0,#{mid},#{pwd},#{subject},#{doc},now())
+	</insert>
+	
+</mapper>

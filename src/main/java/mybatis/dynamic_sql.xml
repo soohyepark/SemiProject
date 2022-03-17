@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dynamic_sql">
+	<select id="if" parameterType="Integer" resultType="product.ProductVo">
+		select * from products
+		<if test="_parameter>0">
+			where ea>=${_parameter}
+		</if>
+	</select>
+	
+	<select id="if2" parameterType="String" resultType="product.ProductVo">
+		select * from products
+		<if test="_parameter != null">
+			where code=#{_parameter}
+		</if>
+	</select>
+	
+	<select id="choose" parameterType="String" resultType="product.ProductVo">
+		select * from products
+		<choose>
+			<when test="_parameter != null">
+				where mdate like '${_parameter}%'
+			</when>
+		</choose>
+	</select>
+	
+	<select id="where" parameterType="String" resultType="product.ProductVo">
+		select * from products
+		<where>
+			and code=#{_parameter}
+		</where>
+	</select>
+	
+	<update id="update" parameterType="member.MemberVo">
+		update member
+		<set>
+			<choose>
+				<when test="pwd != null">
+					pwd = #{pwd}
+				</when>
+				<otherwise>
+					pwd ='manager'
+				</otherwise>
+			</choose>
+		</set>
+		where mid=#{mid}
+	</update>
+</mapper>

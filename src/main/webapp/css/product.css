@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+#product{
+	width:600px;
+	border:0px dotted #00f;
+	border-radius:10px;
+	background-color:#fff;
+	margin:20px auto;
+	padding:30px 40px;
+	line-height:1.6em;
+}
+#product>h2{
+	margin-bottom:20px;
+}
+#product>form>label{
+	display:inline-block;
+	width:80px;
+	text-align:right;
+}
+#product #btnZone{
+	text-align:center;
+	margin:20px;
+}
+#product #result_msg{
+	width:350px;
+	margin:50px auto;
+	border:1px solid #fff;
+	border-radius:10px;
+	background-color:#eef;
+	padding:25px;
+	text-align:center;
+}
+/*list----------*/
+#product_list{
+	width:900px;
+	border:0px dotted #00f;
+	border-radius:10px;
+	background-color:#fff;
+	margin:20px auto;
+	padding:30px 40px;
+	line-height:1.6em;
+}
+#product_list #findZone{
+	text-align:right;
+	margin-bottom:15px;
+}
+
+#product_list #title{
+	background-color:#000;
+	color:#fff;
+	padding:4px;
+}
+#product_list #items{
+	line-height:1.6em;
+}
+#product_list #item:hover{
+	background-color:#eee;
+	cursor:pointer;
+}
+#product_list #items span{display:inline-block;}
+#product_list .serial{
+	width:50px;
+	text-align:center;
+	padding-right:20px;
+}
+#product_list .mdate{width:90px;}
+#product_list .code{width:100px;}
+#product_list .codeName{width:200px;}
+#product_list .price{
+	width:70px;
+	text-align:right;
+	margin-right:10px;
+}
+#product_list .ea{
+	width:70px;
+	text-align:right;
+	margin-right:10px;
+}
+#product_list .amt{
+	width:100px;
+	text-align:right;
+}
+#product_list #page{
+	text-align:center;
+	margin:10px;
+}
+#product_list #page>input{
+	padding:2px 4px;
+	border:1px solid #69f;	
+}
+#product_list #page>input:hover{
+	color:#69f;
+	background-color:#fff;
+	text-decoration:underline;
+}
+.here{
+	background-color:#000;
+	color:#fff;
+}
+
+/*parts----------*/
+#parts{
+	width:300px;
+	line-height: 1.6em;
+	margin:20px auto;
+	border:1px dotted #00f;
+	border-radius:10px;
+	background-color:#fff;
+	margin:20px auto;
+	padding:30px;
+}
+/*
+#parts>h2{
+	text-align:center;
+}
+*/
+#parts>form>input[type=search]{
+	margin-top:10px;
+	width:200px;
+}
+#parts #btnFindParts{
+	background-color:#69f;
+	color:#fff;
+	border:0;
+	border-radius:5px;
+}
+#parts>form>input[type=button]{
+	margin-top:10px;
+	width:90px;
+}
+#parts>form>select{
+	width:300px;
+}
+
